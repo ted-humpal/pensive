@@ -38,14 +38,12 @@ class MyLine {
 	/*
 		*/
 		//this.gPath = obj.path.map((aPath) => {
-			//console.log(aPath);
 			/*
 			filteredPath = aPath.filter((point) => {
 				//return ('undefined' !== typeof point.time); //&& point.time > obj.currTime);
 				return true;
 			});*/
 		//});
-		//console.log(this.gPath);
 		this.gLine = new google.maps.Polyline({
 			path: obj.path,
 			//path: this.gPath,
@@ -59,9 +57,7 @@ class MyLine {
 	}
 	/* */
 	redraw() {
-		console.log("path", this.path);
 		this.path.map((point) => {
-			console.log("p", point);
 			point.lat += 10;
 		});
 		this.gLine.setPath(this.path);
@@ -233,7 +229,6 @@ export default class Map extends React.Component {
 					string += ' ]';
 				});
 				string += '\n]';
-				//console.log(string);
 			}
 
 			this.mylines = [];
@@ -249,7 +244,6 @@ export default class Map extends React.Component {
 				this.mylines.push(line);
 				line.gLine.setMap(this.map);
 				line.gLine.addListener('mouseup',wasDragged);
-				//line.gLine.addListener('mouseup',this.wasDragged);
 				line.gLine.addListener('rightclick', function(e) {
 					if (e.vertex == undefined) {return; }
 					deleteMenu.open(this.map, line.gLine.getPath(), e.vertex);
@@ -263,7 +257,9 @@ export default class Map extends React.Component {
 			var mylines = this.mylines;
 			*/
 
-			let curvedLine = new GmapsCubicBezier(0, 0, 10, 20, -40, 30, 40, 40, 0.05, this.map);
+			let curvedLine = new GmapsCubicBezier('someid', 0, 0, 10, 20, -40, 30, 40, 40, 0.05, this.map);
+			let curvedLine2 = new GmapsCubicBezier('someid2', 50, 150, 30, 130, -20, 110, 0, 100, 0.05, this.map);
+			let sumer = new Nation("Sumer", [curvedLine, curvedLine2], this.map);
 
 
 
@@ -278,10 +274,6 @@ export default class Map extends React.Component {
 			});
 			/*	*/
 		}
-	}
-
-	wasDragged(event) {
-		console.log("Clicked:", event.latLng.lat(),event.latLng.lng());
 	}
 
 
@@ -301,28 +293,96 @@ export default class Map extends React.Component {
 	/**/
 }
 
-//Class the 'nation' ploygon
-	//Ability to have multiple Beziers per polygon - YES
-
-class GmapsCubicBezier {
-	constructor(lat1, long1, lat2, long2, lat3, long3, lat4, long4, resolution, map) {
+class Nation {
+	constructor(id, lineArray, map) {
 		this.map = map;
-		this.resolution = resolution;
-		this.getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4);
-		this.draw();
+		let self = this;
 
-		// When done dragging an anchor marker, redraw
-		this.map.data.addListener('mouseup', (event) => {
-    		if (event.feature.getProperty('drag')) {
-				let points = this.map.data.getFeatureById(2).getGeometry().getArray();
-				this.getPath(points[0].lat(), points[0].lng(), points[1].lat(), points[1].lng(), 
-							 points[2].lat(), points[2].lng(), points[3].lat(), points[3].lng());
-				this.draw();
-			}
-        });
+		// get complete path
+		let path = [];
+		lineArray.map((item) => { path = path.concat(item.getArray()); });
+
+		// initial draw
+		var poly = new google.maps.Data.Polygon([path]);
+		this.map.data.add({ geometry: poly, id: id });
+
+		// further redraws
+		this.redraw = () => {
+			// get path and redraw
+			path = [];
+			lineArray.map((item) => { path = path.concat(item.getArray()); });
+			var poly = new google.maps.Data.Polygon([path]);
+			this.map.data.add({ geometry: poly, id: id });
+		}
+		// child can call the redraw
+		lineArray.map((item) => { item.setCallback(self.redraw); });
 	}
 
+	draw() {
+	}
+
+	redraw() {
+		console.log('parent called');
+	}
+	//TODO output the geoJSON and possibly custom built data
+}
+/* */
+
+class GmapsCubicBezier {
+	constructor(id, lat1, long1, lat2, long2, lat3, long3, lat4, long4, resolution, map) {
+		let self = this;
+		this.path = [];
+		this.id = id;
+		this.subId = '-bezier';
+		this.map = map;
+		this.resolution = resolution;
+
+		this.getPath = (lat1, long1, lat2, long2, lat3, long3, lat4, long4) => {
+			self.path = [];
+			for(let it = 0; it <= 1; it += self.resolution) {
+				self.path.push(self.getBezier({x:lat1, y:long1},{x:lat2, y:long2},{x:lat3, y:long3},{x:lat4, y:long4}, it));
+			}
+			self.anchors = [
+				new google.maps.LatLng(lat1, long1),
+				new google.maps.LatLng(lat2, long2),
+				new google.maps.LatLng(lat3, long3),
+				new google.maps.LatLng(lat4, long4)
+			];
+		}
+
+
+		this.getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4);
+		//this.draw();
+		this.drawAnchors();
+
+		this.getArray = () => {
+			//self.getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4);
+			return self.path;
+		}
+
+		this.setCallback = (f) => {
+			self.callback = f;
+		}
+
+		// When done dragging an anchor marker, redraw
+		//this.map.data.addListener('mouseup', (event) => {
+		map.data.addListener('mouseup', (event) => {
+    		if (event.feature.getProperty('drag') && event.feature.getId() == id+self.subId) {
+				let points = map.data.getFeatureById(self.id+self.subId).getGeometry().getArray();
+				self.getPath(points[0].lat(), points[0].lng(), points[1].lat(), points[1].lng(), 
+							 points[2].lat(), points[2].lng(), points[3].lat(), points[3].lng());
+				self.callback();
+			}
+        });
+
+	}
+
+	getArray() { }
+	setCallback(f) { }
+	getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4) { }
+
 	// Get a curved line based on 4 anchors
+	/*
 	getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4) {
 		this.path = [];
 		for(let it = 0; it <= 1; it += this.resolution) {
@@ -335,17 +395,31 @@ class GmapsCubicBezier {
 			new google.maps.LatLng(lat4, long4)
 		];
 	}
+	*/
+
+	drawAnchors() {
+		// Create markers - id '2'
+		let mp = new google.maps.Data.MultiPoint(this.anchors);
+		this.map.data.add({ geometry: mp, id: this.id+this.subId });
+		this.map.data.getFeatureById(this.id+this.subId).setProperty('drag', true);
+
+		// Make markers draggable
+		this.map.data.setStyle(function(feature) {
+    		return { draggable: feature.getProperty('drag') };
+		});
+	}
 
 	draw() {
 		// Create polygon - id '1'
-		var poly = new google.maps.Data.Polygon([this.path]);
+		//var poly = new google.maps.Data.Polygon([this.path]);
+		var poly = new google.maps.Data.LineString(this.path);
 		this.map.data.add({ geometry: poly, id: 1 });
 		this.map.data.getFeatureById(1).setProperty('drag', false);
 
 		// Create markers - id '2'
 		let mp = new google.maps.Data.MultiPoint(this.anchors);
-		this.map.data.add({ geometry: mp, id: 2 });
-		this.map.data.getFeatureById(2).setProperty('drag', true);
+		this.map.data.add({ geometry: mp, id: this.id+this.subId });
+		this.map.data.getFeatureById(this.id+this.subId).setProperty('drag', true);
 
 		// Make markers draggable
 		this.map.data.setStyle(function(feature) {
@@ -361,7 +435,6 @@ class GmapsCubicBezier {
 		var pos = {};
 		pos.x = C1.x*this.B1(percent) + C2.x*this.B2(percent) + C3.x*this.B3(percent) + C4.x*this.B4(percent);
 		pos.y = C1.y*this.B1(percent) + C2.y*this.B2(percent) + C3.y*this.B3(percent) + C4.y*this.B4(percent);
-		//return pos;
 		return new google.maps.LatLng(pos.x, pos.y);
 	}
 }

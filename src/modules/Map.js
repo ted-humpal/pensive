@@ -257,22 +257,10 @@ export default class Map extends React.Component {
 			var mylines = this.mylines;
 			*/
 
-			let curvedLine = new GmapsCubicBezier('someid', 0, 0, 10, 20, -40, 30, 40, 40, 0.05, this.map);
-			let curvedLine2 = new GmapsCubicBezier('someid2', 50, 150, 30, 130, -20, 110, 0, 100, 0.05, this.map);
-			let sumer = new Nation("Sumer", [curvedLine, curvedLine2], this.map);
+			let edge0 = new GmapsCubicBezier('id0', 12.64033830684679, 41.1328125, 14.295034275499528, 23.076171875, 25.852123440986063, 17.6953125, 33.01527965027898, 22.24609375, 0.05, this.map);
+			let edge1 = new GmapsCubicBezier('id1', 31.49336272328616, 31.435546875, 25.569553880023655, 35.78125, 21.017020965640015, 36.259765625, 12.554563528593656, 41.2890625, 0.05, this.map);
+			let Sumer = new Nation('Sumer', [edge0, edge1], this.map);
 
-
-
-
-			/*	
-			var bermudaTriangle = new google.maps.Data.Polygon([curvedLine.path]);
-			this.map.data.add({ geometry:bermudaTriangle });
-			this.map.data.add({ geometry: new google.maps.Data.MultiPoint(curvedLine.anchors) });
-			this.map.data.setStyle({
-				editable: true,
-				draggable: true
-			});
-			/*	*/
 		}
 	}
 
@@ -313,6 +301,23 @@ class Nation {
 			lineArray.map((item) => { path = path.concat(item.getArray()); });
 			var poly = new google.maps.Data.Polygon([path]);
 			this.map.data.add({ geometry: poly, id: id });
+			
+			// output onto the console the updated Nation
+			let mystr = '';
+			let myedges = '';
+			lineArray.map((item, i) => { 
+				let points = item.getAnchors();
+				mystr += "let edge" + i + " = new GmapsCubicBezier('id" + i + "', " + 
+							points[0].lat() + ", " + points[0].lng() + ", " + points[1].lat() + ", " + points[1].lng() + ", " +
+							points[2].lat() + ", " + points[2].lng() + ", " + points[3].lat() + ", " + points[3].lng() + ", 0.05, this.map);\n";
+				myedges += "edge" + i + ", ";
+			});
+			console.log(mystr + "let " + id + " = new Nation('" + id + "', [" + myedges.slice(0,-2) + "], this.map);");
+			/*
+			let curvedLine = new GmapsCubicBezier('id1', 0, 0, 10, 20, -40, 30, 40, 40, 0.05, this.map);
+			let curvedLine2 = new GmapsCubicBezier('id2', 50, 150, 30, 130, -20, 110, 0, 100, 0.05, this.map);
+			let sumer = new Nation("Sumer", [curvedLine, curvedLine2], this.map);
+			*/
 		}
 		// child can call the redraw
 		lineArray.map((item) => { item.setCallback(self.redraw); });
@@ -355,10 +360,8 @@ class GmapsCubicBezier {
 		//this.draw();
 		this.drawAnchors();
 
-		this.getArray = () => {
-			//self.getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4);
-			return self.path;
-		}
+		this.getArray = () => { return self.path; }
+		this.getAnchors = () => { return map.data.getFeatureById(self.id+self.subId).getGeometry().getArray(); }
 
 		this.setCallback = (f) => {
 			self.callback = f;
@@ -378,6 +381,7 @@ class GmapsCubicBezier {
 	}
 
 	getArray() { }
+	getAnchors() { }
 	setCallback(f) { }
 	getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4) { }
 

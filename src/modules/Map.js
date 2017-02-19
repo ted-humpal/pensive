@@ -1,76 +1,23 @@
-/*var paths = [
-[ { lat:0, lng:-20},  { lat:10, lng:-30} ],
-[ { lat:14.585157027016134, lng:77.47350200000011, time:-200000},  { lat:18.944840382278763, lng:77.12732822412147},  { lat:23.611086266731316, lng:76.39920111922953},  { lat:25.815039714413697, lng:75.51857568305923},	{ lat:27.492998449933904, lng:74.61068599090862},  { lat:28.69606476879269, lng:73.58991421534034},  { lat:29.94614531974164, lng:72.42601254582502},  { lat:30.651246297713627, lng:71.15049506682573},  { lat:32.480062322470054, lng:68.98075981249997, time:546} ],
-[ { lat:1.6028258074102704, lng:35.906555877685605, time:-200000},	{ lat:30.68789540327471, lng:32.30567415663768, time:-199999},	{ lat:24.11142014080988, lng:103.25977038822703, time:-199998},  { lat:9.103819480115206, lng:124.22001562499997, time:-199997} ],
-[ { lat:1.6028289748548707, lng:35.90650282287584},  { lat:7.60624700786913, lng:13.744744992475262},	{ lat:12.791960400708996, lng:-11.383921874999828}],
-[ { lat:1.6028258074102704, lng:35.90655587768572},  { lat:-1.6643598137831919, lng:36.31936027689699},  { lat:-5.019386387060663, lng:36.205336454826465},  { lat:-9.030553955546228, lng:35.563926118521294},  { lat:-12.865631568805185, lng:34.28657360737884},  { lat:-16.67618718156459, lng:31.942299631255878},  { lat:-20.20040946796966, lng:28.96944472014627},	{ lat:-22.2608312375265, lng:26.969210774130374},  { lat:-24.125109645516908, lng:24.28837499999986} ],
-[ { lat:41.50587882986372, lng:-4.967906249999828},  { lat:49.3578482788793, lng:11.64473588736314},  { lat:49.643926362297236, lng:34.012867822342514},  { lat:48.877356124291815, lng:37.50762439750497},  { lat:47.56052545099231, lng:40.34430999210258},  { lat:45.941663126174106, lng:42.851399316040215},  { lat:43.788443565235255, lng:44.85478124999986} ],
-[{ lat:1.602912328732033, lng:35.90641699218736},  { lat:12.311801554331428, lng:41.85916333848377},{ lat:12.913949446192717, lng:44.9128037780938}, {lat: 14.710286937907219, lng: 49.36838375214404}, {lat: 16.95136552810223, lng: 53.71762709974723}, {lat: 19.366649236074686, lng: 57.46751101394807}, {lat: 22.484085899598817, lng: 59.76353906250017}],
-[ { lat:22.499280249444837, lng:59.76353906250017},  { lat:25.585794062958847, lng:66.0981481243673},  { lat:25.883045696996906, lng:75.36568327925579},  { lat:24.88651801039385, lng:80.08269673757525},	{ lat:23.768993254908057, lng:84.91284123700802},  { lat:22.914237047688, lng:91.79708498105128},  { lat:20.07275735797195, lng:95.90363904516778},  { lat:16.195388818051264, lng:97.43167911262458},	{ lat:10.078151580043814, lng:98.31362289429194},  { lat:2.8107548186259677, lng:100.78877616465934},  { lat:-0.6342752051778824, lng:104.0724413840478},  { lat:-2.98086978328905, lng:105.57760414521249},  { lat:-5.5019362785644645, lng:106.20872811156403},  { lat:-6.921942497944432, lng:112.59585860213747},  { lat:-10.844866975352733, lng:121.70986559901212},	{ lat:-14.006091272220758, lng:126.06592789178353},  { lat:-16.30637133863945, lng:128.27980659666412},  { lat:-18.925410343424524, lng:130.016518474622},	{ lat:-21.281455831084703, lng:131.6327393091666},	{ lat:-24.279080223159834, lng:132.95174999999972} ],
-[ { lat:-6.9226494895989825, lng:112.62975000000017},  { lat:-5.100695353735186, lng:119.9409329728885},  { lat:-1.384704984182994, lng:127.42437501529776},  { lat:-0.7943007958048764, lng:135.42005339462617},  { lat:-1.800712396450524, lng:139.8429288104826},  { lat:-3.324186515721468, lng:143.39323849059906},  { lat:-4.853945472076594, lng:145.39650634837108},  { lat:-5.677423586146996, lng:147.40626482147877},  { lat:-5.445655030672441, lng:150.20865310424995},  { lat:-4.330798428720004, lng:151.95167410663134},  { lat:-7.625934226672115, lng:156.73709210760148},  { lat:-9.658583618104943, lng:160.87040024999988} ],
-[ { lat:1.6028351494997755, lng:35.90655587768538},  { lat:1.959702063650759, lng:34.29330681878923},  { lat:2.487917370193467, lng:32.2557593782667},	{ lat:2.654978839548707, lng:31.18523659862649},  { lat:3.1676823423437113, lng:29.464948006099803},  { lat:3.5722092839078257, lng:28.014854515303114},  { lat:3.9699107803385267, lng:26.914973937477498},  { lat:4.01510730887109, lng:25.55078988309083},  { lat:3.6225784517787285, lng:24.230926190471564},  { lat:2.614626186242837, lng:23.264243868798644},  { lat:1.6501347171147733, lng:22.254605861188338},  { lat:0.9492586030847275, lng:21.816840840345435},  { lat:0.22990025218472776, lng:21.452622643882364},  { lat:-0.12475100505181495, lng:21.127337462236255},  { lat:-0.567034924057625, lng:20.890078109369824},  { lat:-1.2285699874997147, lng:20.34519108003815},  { lat:-2.021514503478074, lng:19.66834707219857},	{ lat:-3.2079043986280387, lng:19.337622506635853},  { lat:-4.701851675784391, lng:19.316600897587477},  { lat:-6.152773960774386, lng:19.64922659374747},	{ lat:-7.866050142143414, lng:20.42118749999986} ],
-[ { lat:32.12321227196192, lng:41.25157617187483},	{ lat:32.208565701511645, lng:41.31879893397513},  { lat:32.34604285061729, lng:41.39900008526456},  { lat:32.51412547495944, lng:41.53006480912984},  { lat:32.59906130470201, lng:41.58117102191932},  { lat:32.69101422991097, lng:41.65253877971759},  { lat:33.48729584942735, lng:42.05112147992975},  { lat:34.924010651494996, lng:42.71358451582364},	{ lat:38.05333533487618, lng:44.615089246466596},  { lat:42.30064162385089, lng:45.1749458176198},	{ lat:56.16833822762913, lng:40.63603124999986} ],
-[ { lat:32.27653401999585, lng:-107.09681450000033},  { lat:19.091204522134944, lng:-96.57248851860976},  { lat:9.62170970547189, lng:-82.35082272617063},	{ lat:7.25621470759544, lng:-75.64581326195048},  { lat:-16.241798103460727, lng:-62.63577214967273},  { lat:-35.18622931732451, lng:-64.30537699999996} ],
-[ { lat:45.48911437601843, lng:-110.26087500000017},  { lat:63.884590903535035, lng:175.42632623996167},  { lat:26.179893386345242, lng:99.17118749999986} ],
-[ { lat:45.58393567908057, lng:-110.26087700000016},  { lat:46.19021750529392, lng:-68.52412700000014} ],
-[ { lat:20.077579445805416, lng:95.90031884765608},  { lat:21.708664950824385, lng:104.60779842627755},  { lat:23.735290727543116, lng:113.30693917603196},  { lat:30.462703800316017, lng:122.91245920943379},  { lat:36.65333451666448, lng:139.14306430338797},	{ lat:60.04017759306764, lng:169.7889112014375},  { lat:32.484983820888594, lng:-106.49287700000025} ],
-[ { lat:56.70519450484493, lng:53.74303124999983},	{ lat:30.338902252584443, lng:101.28056249999986} ],
-[ { lat:30.895049594650345, lng:32.27574609374983},  { lat:31.039967081468912, lng:33.908560518668764},  { lat:31.772399968263773, lng:34.96063079736405},	{ lat:34.50686642375888, lng:36.191641250381736},  { lat:36.13342359111269, lng:36.57458577771524},  { lat:37.06014795970327, lng:36.45890677799116},  { lat:41.0918013998497, lng:29.021003700697747},  { lat:46.001010892913875, lng:13.671635931100923},  { lat:43.550032555264714, lng:10.196101257485566},  { lat:41.514292549216336, lng:-0.7604531250001401} ],
-[ { lat:30.888877431989602, lng:32.27025292968733},  { lat:29.740919219738675, lng:27.11677409897618},	{ lat:29.589271046688772, lng:24.036309455786977},	{ lat:32.20003308119973, lng:6.419508443721952},  { lat:31.636744943592298, lng:-7.70381250000014} ],
-[ { lat:49.35926569757824, lng:11.64342187499983},	{ lat:53.625481622268495, lng:-4.89131250000014} ]
-];
-*/
-//How to draw on the map?
-//Have this component do the drawing. Send in the information in from above (control above).
-//Just have a basic datastructure and draw what's in it. 
-//Markers
-//Lines
-//Filled Polygons with text inside
+//TODO the esthetic need is pretty high, attempt to create an attractive Africa and see how it looks
+//TODO output the entire animation construct
+//TODO start animation
+//TODO reset to an animation stage 
 import React from 'react';
 import Arboreal from 'arboreal';
 
-// Set a listener on every MyLine
-// Add to the path by altering gLine
-// draw
-class MyLine {
-	constructor(obj) {
-		this.path = obj.path;
-	/*
-		*/
-		//this.gPath = obj.path.map((aPath) => {
-			/*
-			filteredPath = aPath.filter((point) => {
-				//return ('undefined' !== typeof point.time); //&& point.time > obj.currTime);
-				return true;
-			});*/
-		//});
-		this.gLine = new google.maps.Polyline({
-			path: obj.path,
-			//path: this.gPath,
-			geodesic: obj.geodesic,
-			editable: obj.editable
-		});
-		this.time = obj.path.map((o) => {
-			if ('undefined' !== typeof o.time) return o.time;
-			else return null;
-		});
-	}
-	/* */
-	redraw() {
-		this.path.map((point) => {
-			point.lat += 10;
-		});
-		this.gLine.setPath(this.path);
-		//call this to set the path in the google polyline
-		//TODO will this update the line????
-		//this.gPath = obj.path.map((aPath) => {
-		//	aPath.map((point) => {
-		//		return ('undefined' !== typeof point.time and point.time > obj.currTime);
-		//	}
-		//});
-	}
-	/* */
-}
+let TIMESTEP = 100;
+let ANIMATE = true;
+ANIMATE = false;
+
+let DUALDRAW = true;
+DUALDRAW = false;
+let SEEMARKERS = true;
+//SEEMARKERS = false;
+
+let COLORS = { NAVY:'001f3f', BLUE:'0074D9', AQUA:'7FDBFF', TEAL:'39CCCC', OLIVE:'3D9970', GREEN:'2ECC40', LIME:'01FF70', YELLOW:'FFDC00', ORANGE:'FF851B', RED:'FF4136', MAROON:'85144b', FUCHSIA:'F012BE', PURPLE:'B10DC9', BLACK:'111111', GRAY:'AAAAAA', SILVER:'DDDDDD' };
+let COLOR = COLORS.GRAY;
+let BCOLOR = COLORS.OLIVE;
+
 
 /* */
   function DeleteMenu() {
@@ -154,14 +101,6 @@ export default class Map extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.myline = {};
-	}
-
-	static propTypes() {
-	}
-
-
-	componentWillMount(){
 	}
 
 	render() {
@@ -174,24 +113,11 @@ export default class Map extends React.Component {
 		)
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		if (!nextProps.locationData || nextProps.locationData.length === 0) {
-			return false
-		}
-		return true
-	}
-
 	componentDidMount(){
 		this.initMap();
 	}
 
 	componentDidUpdate(){
-		if (prevProps.google !== this.props.google) {
-			if(!this.map){
-				this.initMap();
-			}
-			this.configureMap();
-		}
 	}
 
 	initMap() {
@@ -214,85 +140,174 @@ export default class Map extends React.Component {
 			];
 			this.map.setOptions({styles: styles});
 
-			function wasDragged(event) {
-				let string = '[\n';
-				mylines.map((line,j) => {
-					if (j != 0) string += ',\n'; 
-					string += '[';
-					line.gLine.getPath().forEach((l,i) => { 
-						if (i != 0) string += ', '; 
-						//string += ' { lat:' + l.lat() + ', lng:' + l.lng() + '}'; 
-						string += ' { lat:' + l.lat() + ', lng:' + l.lng();
-						if (line.time.length > i) string += ', time:' + line.time[i] + '}'; 
-						else string += '}'; 
-					});
-					string += ' ]';
-				});
-				string += '\n]';
-			}
-
-			this.mylines = [];
 			var deleteMenu = new DeleteMenu();
-			/*
-			paths.map((mypath) => {
-				var line = new MyLine({
-					path: mypath,
-					geodesic: true,
-					editable: true
-					//editable: false
-				});
-				this.mylines.push(line);
-				line.gLine.setMap(this.map);
-				line.gLine.addListener('mouseup',wasDragged);
-				line.gLine.addListener('rightclick', function(e) {
-					if (e.vertex == undefined) {return; }
-					deleteMenu.open(this.map, line.gLine.getPath(), e.vertex);
-				});
-				line.gLine.addListener('rightclick', function(e) {
-					if (e.vertex == undefined) {return; }
-					//deleteMenu.open(this.map, line.gLine.getPath(), e.vertex);
-					line.redraw();
+			let Nations = [];
+
+
+      function MakeControls(controlDiv, controlDiv2, map) {
+
+		// Marker Visibility
+        var controlUI = document.createElement('div');
+        controlUI.title = 'Click to recenter the map';
+        controlUI.className = 'controlUI';
+        controlDiv.appendChild(controlUI);
+
+        var controlText = document.createElement('div');
+        controlText.innerHTML = 'Marker Visibility';
+        controlText.className = 'controlText';
+        controlUI.appendChild(controlText);
+
+        controlUI.addEventListener('click', function() {
+			Nations.map((nation) => {
+				nation.getMarkers().map((arr) => {
+					arr.map((m) => { m.setVisible(!m.getVisible()); } );
 				});
 			});
-			var mylines = this.mylines;
-			*/
+        });
 
-			let edge0 = new GmapsCubicBezier('id0', 12.64033830684679, 41.1328125, 14.295034275499528, 23.076171875, 25.852123440986063, 17.6953125, 33.01527965027898, 22.24609375, 0.05, this.map);
-			let edge1 = new GmapsCubicBezier('id1', 31.49336272328616, 31.435546875, 25.569553880023655, 35.78125, 21.017020965640015, 36.259765625, 12.554563528593656, 41.2890625, 0.05, this.map);
-			let Sumer = new Nation('Sumer', [edge0, edge1], this.map);
+        var controlUI2 = document.createElement('div');
+        controlUI2.className = 'controlUI';
+        controlDiv2.appendChild(controlUI2);
+
+        var controlText2 = document.createElement('div');
+        controlText2.innerHTML = 'Toggle Animate';
+        controlText2.className = 'controlText';
+        controlUI2.appendChild(controlText2);
+
+        controlUI2.addEventListener('click', function() {
+        	ANIMATE = !ANIMATE;
+        });
+
+      }
+
+// Create Controls
+var markerControlDiv = document.createElement('div');
+var animateControlDiv = document.createElement('div');
+var centerControl = new MakeControls(markerControlDiv, animateControlDiv, this.map);
+markerControlDiv.index = 1;
+animateControlDiv.index = 2;
+this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(markerControlDiv);
+this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(animateControlDiv);
+
+
+
+
+
+
+
+
+let SumerBorders = {
+	points : [
+		[
+			[1.7132651050559398, 34.845820312499995, 1.4376921427967229, 35.418632812499936, 0.6269450269346983, 36.498593750000055, -1.4205206760230005, 36.12671875000001],
+			[0.9068294173313176, 31.737617187500064, 1.4575040611054924, 32.52804687499997, 1.9927008379157494, 33.4814453125, 2.016392743826537, 34.20480468749997],
+			[-3.469211228634133, 32.780390624999995, -2.9307048571245446, 31.331718749999936, -1.417828439148396, 30.781679687499945, -0.10230679689221454, 31.15355468749999],
+			[-2.0050907009315844, 35.780585937500064, -2.994383192006709, 35.20871093749997, -3.660531805824051, 34.5458984375, -3.912763273865498, 33.60281250000003]
+		],
+		[
+			[8.015372675278607, 37.834101562499995, 3.983458170058817, 40.955742187499936, -0.0761674392609916, 38.344296875000055, -2.5623897642531306, 37.79664062500001],
+			[8.434827737571318, 6.776679687500064, 16.17964319902485, 12.928437499999973, 13.468873262309707, 27.9443359375, 8.663296096376685, 36.75363281249997],
+			[2.2409860541106177, 17.047968749999995, 4.4025448574992865, 15.511406249999936, 6.434668572328466, 12.500429687499945, 7.478903118991911, 6.676015624999991],
+			[-6.9978029842920675, 36.044257812500064, -7.02107796804504, 32.74777343749997, -7.944089355555468, 25.0537109375, -3.825072957683521, 21.913359375000027]
+		],
+		[
+			[10.228096066175398, 41.833124999999995, 14.295000000000066, 57.171562499999936, 4.270459062092592, 50.561093750000055, -2.255044742518806, 39.99390625000001],
+			[16.45236553927402, 8.578437500000064, 15.206590727649639, 20.135468749999973, 30.499961843415175, 21.484375, 32.09722916876456, 31.260468749999973],
+			[4.653425485337044, 11.247187499999995, 7.3311331985889145, 9.534843749999936, -2.8669713342748926, -17.865781250000055, 13.097539320453034, -18.72437500000001],
+			[-10.47209423935723, 41.273750000000064, -48.05370068932507, 27.166718749999973, -41.68453605839184, 17.71484375, -1.410782699506581, 8.466093750000027]
+		]
+	],
+	times : [new Date().getTime(), (new Date().getTime())+15000, (new Date().getTime())+15000+15000]
+}
+
+let Sumer = new Nation('Sumer', this.map, COLOR, SumerBorders);
+Nations.push(Sumer);
+
+ 
+if (ANIMATE) {
+	function animateBorders(borders, nation) {
+	  //setup
+  	  var id = setInterval(frame, TIMESTEP);
+  	  var startTime = borders.times[0];
+  	  var endTime = borders.times[1];
+  	  var startBorders = borders.points[0];
+  	  var nextBorders = borders.points[1];
+
+  	  function frame() {
+  		let curTime = new Date().getTime();
+
+    	if (endTime <= curTime) {
+    		var found = false;
+    		borders.times.slice(1).map((time,i) => {
+    			//find the next endTime and border to expand to (if endTime hasn't come yet)
+    			if (curTime <= borders.times[i+1] && ANIMATE) {
+  	  	  	  	  	startTime = borders.times[i];
+  	  	  	  	  	endTime = borders.times[i+1];
+  	  	  	  	  	startBorders = borders.points[i];
+  	  	  	  	  	nextBorders = borders.points[i+1];
+  	  	  	  	  	found = true;
+  	  	  	  	}
+    		});
+    		// if no value was found we're done animating!
+    		if (!found ) {
+      	  		clearInterval(id);
+	  	  		nation.setAnchors(nextBorders);
+	  	  	}
+    	} else {
+        	let percentComplete = (curTime - startTime) / (endTime - startTime);
+      		let curPoints = [];
+      		//move.startPoints.map((myArr, i) => {
+      		startBorders.map((myArr, i) => {
+      			let temp = [];
+      			myArr.map((item, j) => {
+      				//curPoints.push(percentComplete * (move.endPoints[j] - item) + item);
+      				//temp.push(percentComplete * (move.endPoints[i][j] - item) + item);
+      				temp.push(percentComplete * (nextBorders[i][j] - item) + item);
+      			});
+      			curPoints.push(temp);
+      		});
+			//obj.setAnchors(curPoints);
+			nation.setAnchors(curPoints);
+    	}
+  	  }
+	}
+
+
+	animateBorders(SumerBorders, Sumer);
+}
+
+
 
 		}
 	}
-
-
-	/*
-	redraw() {
-		this.mylines.map((line) => {
-			line.redraw();
-		});
-	}*/
-	
-	startTimer() {
-	}
-
-	// clean up event listeners when component unmounts
-	componentDidUnMount() {
-	}
-	/**/
 }
 
+
+
 class Nation {
-	constructor(id, lineArray, map) {
+	constructor(id, map, color, borders) {
 		this.map = map;
 		let self = this;
+		let lineArray = borders.points[0].map((border, i) => {
+			return new GmapsCubicBezier('id'+i, ...border, 0.05, this.map);
+		});
 
 		// get complete path
 		let path = [];
 		lineArray.map((item) => { path = path.concat(item.getArray()); });
 
+
 		// initial draw
 		var poly = new google.maps.Data.Polygon([path]);
-		this.map.data.add({ geometry: poly, id: id });
+		let nat, nat2
+		nat = this.map.data.add({ geometry: poly, id: id, properties: { color: color } });
+		if (DUALDRAW)
+			nat2 = this.map.data.add({ geometry: poly, id: id+'2', properties: { color: color } });
+
+		// set color (based on the properties set)
+		this.map.data.setStyle(function(feature) { return { fillColor: feature.getProperty('color'), strokeWeight: 1, strokeColor: BCOLOR }; });
+
+		let q = 0;
 
 		// further redraws
 		this.redraw = () => {
@@ -300,36 +315,59 @@ class Nation {
 			path = [];
 			lineArray.map((item) => { path = path.concat(item.getArray()); });
 			var poly = new google.maps.Data.Polygon([path]);
-			this.map.data.add({ geometry: poly, id: id });
+			if (q%2 == 0) {
+				this.map.data.add({ geometry: poly, id: id, properties: { color: color } });
+			} else {
+				this.map.data.add({ geometry: poly, id: id+'2', properties: { color: color } });
+			}
+			//this.map.data.setStyle(function(feature) { return { fillColor: feature.getProperty('color'), strokeWeight: 1, strokeColor: BCOLOR }; });
+			if (DUALDRAW)
+				q+=1;
 			
-			// output onto the console the updated Nation
+
+			// output onto the console the updated nation
 			let mystr = '';
-			let myedges = '';
 			lineArray.map((item, i) => { 
 				let points = item.getAnchors();
-				mystr += "let edge" + i + " = new GmapsCubicBezier('id" + i + "', " + 
-							points[0].lat() + ", " + points[0].lng() + ", " + points[1].lat() + ", " + points[1].lng() + ", " +
-							points[2].lat() + ", " + points[2].lng() + ", " + points[3].lat() + ", " + points[3].lng() + ", 0.05, this.map);\n";
-				myedges += "edge" + i + ", ";
+				mystr += "[" + points[0].lat() + ", " + points[0].lng() + ", " + points[1].lat() + ", " + points[1].lng() + ", " +
+							points[2].lat() + ", " + points[2].lng() + ", " + points[3].lat() + ", " + points[3].lng() + "],\n";
 			});
-			console.log(mystr + "let " + id + " = new Nation('" + id + "', [" + myedges.slice(0,-2) + "], this.map);");
-			/*
-			let curvedLine = new GmapsCubicBezier('id1', 0, 0, 10, 20, -40, 30, 40, 40, 0.05, this.map);
-			let curvedLine2 = new GmapsCubicBezier('id2', 50, 150, 30, 130, -20, 110, 0, 100, 0.05, this.map);
-			let sumer = new Nation("Sumer", [curvedLine, curvedLine2], this.map);
-			*/
+			console.log(mystr.slice(0,-2));
+			let mystr2 = '';
+			borders.points.map((border, i) => { 
+				mystr2 += '[\n';
+				border.map((item, i) => { 
+					mystr2 += "[" + item[0] + ", " + item[1] + ", " + item[2] + ", " + item[3] + ", " +
+								item[4] + ", " + item[5] + ", " + item[6] + ", " + item[7] + "],\n";
+				});
+				mystr2 = mystr2.slice(0,-2) + '\n],\n';
+			});
+			console.log(mystr2.slice(0,-2));
 		}
+
+
 		// child can call the redraw
 		lineArray.map((item) => { item.setCallback(self.redraw); });
+
+
+		// set anchor points
+		this.setAnchors = (anchorArr) => {
+			lineArray.map((item, i) => {
+				item.setPath(...anchorArr[i]);
+			});
+			this.redraw();
+		}
+		this.getMarkers = () => { 
+			return lineArray.map((item) => {
+				return item.getMarkers();
+			});
+		}
 	}
 
-	draw() {
-	}
+	getMarkers() {}
 
-	redraw() {
-		console.log('parent called');
-	}
-	//TODO output the geoJSON and possibly custom built data
+	setAnchors() {}
+	redraw() {}
 }
 /* */
 
@@ -342,7 +380,7 @@ class GmapsCubicBezier {
 		this.map = map;
 		this.resolution = resolution;
 
-		this.getPath = (lat1, long1, lat2, long2, lat3, long3, lat4, long4) => {
+		this.setPath = (lat1, long1, lat2, long2, lat3, long3, lat4, long4) => {
 			self.path = [];
 			for(let it = 0; it <= 1; it += self.resolution) {
 				self.path.push(self.getBezier({x:lat1, y:long1},{x:lat2, y:long2},{x:lat3, y:long3},{x:lat4, y:long4}, it));
@@ -353,83 +391,98 @@ class GmapsCubicBezier {
 				new google.maps.LatLng(lat3, long3),
 				new google.maps.LatLng(lat4, long4)
 			];
+			this.drawAnchors();
 		}
-
-
-		this.getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4);
-		//this.draw();
-		this.drawAnchors();
 
 		this.getArray = () => { return self.path; }
-		this.getAnchors = () => { return map.data.getFeatureById(self.id+self.subId).getGeometry().getArray(); }
+		//this.getAnchors = () => { return map.data.getFeatureById(self.id+self.subId).getGeometry().getArray(); }
+		this.getAnchors = () => { return self.anchors; }
+		this.setCallback = (f) => { self.callback = f; }
 
-		this.setCallback = (f) => {
-			self.callback = f;
-		}
 
+		let pinColor = Math.floor((Math.random() * 999999) + 100000) + "";
+    	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+    	    	       new google.maps.Size(21, 34),
+    	    	       new google.maps.Point(0,0),
+    	    	       new google.maps.Point(10, 34));
+		let markers = Array(4).fill(null).map((item) => {
+			return new google.maps.Marker({
+				position: {lat: 0, lng: 0},
+				draggable: true,
+				map: map,
+				icon: pinImage,
+				visible: SEEMARKERS
+			});
+		});
+		self.markers = markers;
+
+		markers.map((item) => {
+			item.addListener('mouseup', (event) => {
+				let points = self.markers.map((x) => { return x.getPosition() });
+				self.setPath(points[0].lat(), points[0].lng(), points[1].lat(), points[1].lng(), 
+							 points[2].lat(), points[2].lng(), points[3].lat(), points[3].lng());
+				self.callback();
+        	});
+        });
+
+		/*
 		// When done dragging an anchor marker, redraw
-		//this.map.data.addListener('mouseup', (event) => {
 		map.data.addListener('mouseup', (event) => {
     		if (event.feature.getProperty('drag') && event.feature.getId() == id+self.subId) {
-				let points = map.data.getFeatureById(self.id+self.subId).getGeometry().getArray();
-				self.getPath(points[0].lat(), points[0].lng(), points[1].lat(), points[1].lng(), 
+				//let points = map.data.getFeatureById(self.id+self.subId).getGeometry().getArray();
+				let points = self.markers;
+				self.setPath(points[0].lat(), points[0].lng(), points[1].lat(), points[1].lng(), 
 							 points[2].lat(), points[2].lng(), points[3].lat(), points[3].lng());
 				self.callback();
 			}
         });
+        */
+
+		this.drawAnchors = () => {
+			self.markers.map((item, i) => {
+				item.setPosition(this.anchors[i]);
+			});
+			// Create markers - id '2'
+			//let mp = new google.maps.Data.MultiPoint(this.anchors);
+			/*
+			let thing = this.map.data.add({ 
+				geometry: mp, 
+				properties: {
+    				draggable: true,
+					//visible: false,
+					fillcolor: 'blue',
+					style: {
+    					draggable: true,
+						fillcolor: 'blue',
+						//visible: false
+					}
+				}, 
+				id: this.id+this.subId });
+			//thing.setProperty('visible', false);
+			this.map.data.getFeatureById(this.id+this.subId).setProperty('drag', true);
+
+			// Make markers draggable
+			this.map.data.setStyle(function(feature) {
+    			return { 
+    				draggable: feature.getProperty('drag'),
+    				visible: !feature.getProperty('drag') 
+    			};
+			});
+			/* */
+		}
+
+		this.setPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4);
+		this.getMarkers = () => { return self.markers };
 
 	}
 
+	getMarkers() { }
+	drawAnchors() { }
 	getArray() { }
 	getAnchors() { }
+	setAnchors() { }
 	setCallback(f) { }
-	getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4) { }
-
-	// Get a curved line based on 4 anchors
-	/*
-	getPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4) {
-		this.path = [];
-		for(let it = 0; it <= 1; it += this.resolution) {
-			this.path.push(this.getBezier({x:lat1, y:long1},{x:lat2, y:long2},{x:lat3, y:long3},{x:lat4, y:long4}, it));
-		}
-		this.anchors = [
-			new google.maps.LatLng(lat1, long1),
-			new google.maps.LatLng(lat2, long2),
-			new google.maps.LatLng(lat3, long3),
-			new google.maps.LatLng(lat4, long4)
-		];
-	}
-	*/
-
-	drawAnchors() {
-		// Create markers - id '2'
-		let mp = new google.maps.Data.MultiPoint(this.anchors);
-		this.map.data.add({ geometry: mp, id: this.id+this.subId });
-		this.map.data.getFeatureById(this.id+this.subId).setProperty('drag', true);
-
-		// Make markers draggable
-		this.map.data.setStyle(function(feature) {
-    		return { draggable: feature.getProperty('drag') };
-		});
-	}
-
-	draw() {
-		// Create polygon - id '1'
-		//var poly = new google.maps.Data.Polygon([this.path]);
-		var poly = new google.maps.Data.LineString(this.path);
-		this.map.data.add({ geometry: poly, id: 1 });
-		this.map.data.getFeatureById(1).setProperty('drag', false);
-
-		// Create markers - id '2'
-		let mp = new google.maps.Data.MultiPoint(this.anchors);
-		this.map.data.add({ geometry: mp, id: this.id+this.subId });
-		this.map.data.getFeatureById(this.id+this.subId).setProperty('drag', true);
-
-		// Make markers draggable
-		this.map.data.setStyle(function(feature) {
-    		return { draggable: feature.getProperty('drag') };
-		});
-	}
+	setPath(lat1, long1, lat2, long2, lat3, long3, lat4, long4) { }
 
 	B1(t) { return t*t*t; }
 	B2(t) { return 3*t*t*(1-t); }
